@@ -62,7 +62,7 @@
                             <form method="post">
                                 {% csrf_token %}
                                 <input type="hidden" id='productId' name="productId" class="productId" value="{{i.productId.id}}">
-                                <input type="hidden" pattern="[0-9]" id='productImage' name="productImage" class="productId" value="{{i.id}}">
+                                <input type="hidden" pattern="" id='productImage' name="productImage" class="productId" value="{{i.id}}">
                             
                                 <input type='submit' value='Add to Cart' class="btn btn-sm btn-primary addToCart">
                                 <a href="#" class="btn btn-sm btn-primary">Buy Now</a>
@@ -76,4 +76,4 @@
     </div>
 
 
-{% end
+{% endblock content %}

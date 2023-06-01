@@ -228,6 +228,7 @@ def addToCart(request,pid,img):
 
 
 def checkout_session(request,total):
+   
     stripe.api_key=settings.STRIPE_PRIVATE_KEY
     
     session = stripe.checkout.Session.create(
