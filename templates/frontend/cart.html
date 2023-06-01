@@ -1,0 +1,109 @@
+{% extends 'frontend/index.html' %}
+{% load static %}
+{% block header %}Cart{% endblock header %}
+{% block content %}
+    <div class="row">
+        <section class="h-100 h-custom py-5">
+            
+                <div class=" d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12">
+                        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+                            <div class="card-body p-0">
+                                <div class="row g-0">
+                                    <div class="col-lg-8 col-sm-12">
+                                        <div class="p-5">
+                                            <div class="row mb-5">
+                                                <h2 class="fw-bold col-md-10  mb-0 text-black">Shopping Cart</h2><br>
+                                                <h6 class="mb-0 col-md-2 d-flex justify-content-end mt-2  text-muted ">{{itemCount}} Item</h6>
+                                            </div>
+                                            <hr class="my-4">
+                                        {% if items %}
+                                        {% for i in items %}
+                                            <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                                
+                                                
+                                                <div class="col-md-2 col-sm-5 col-lg-2 col-xl-2">
+                                                    <img src="{{i.product_image.image.url}}"
+                                                        class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                                </div>
+                                                <div class="col-md-3 col-sm-7 col-lg-3 col-xl-3">
+                                                    <h6 class="text-muted">{{i.product_id.product_name}}</h6>
+                                                    <h6 class="text-black mb-0">{{i.product_id.specification}}</h6>
+                                                </div>
+                                                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                                    {% comment %} <button class="btn btn-link px-2"
+                                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                        <i class="fas fa-minus"></i>
+                                                    </button> {% endcomment %}
+                                                    
+                                                    <input  type="number" id="form1" name="quantity" value={{i.quantity}} class="form-control " />
+
+                                                    {% comment %} <button class="btn btn-link px-2"
+                                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                        <i class="fas fa-plus"></i>
+                                                    </button> {% endcomment %}
+                                                </div>
+                                                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                                    <h6 class="mb-0">{{i.product_id.price}}</h6>
+                                                </div>
+                                                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                    <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                                                </div>
+                                                
+                                            </div>
+                                            {% endfor %}
+                                            {% endif %}
+                                            <hr class="my-4">
+   
+                                            <div class="pt-5">
+                                                <h6 class="mb-0"><a href="{% url 'shop' %}" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Summary section  -->
+                                    <div class="col-lg-4 col-sm-12 bg-grey">
+                                        <div class="p-5">
+                                            <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                                            <hr class="my-4">
+        
+                                            <div class="d-flex justify-content-between mb-4">
+                                                <h5 class="text-uppercase">{{itemCount}} Item</h5>
+                                                <h5>{{total}}</h5>
+                                            </div>
+        
+                        
+        
+                                            <h6 class="text-uppercase my-3 ">Promo code</h6>
+        
+                                            <div class="mb-4">
+                                                <div class="form-outline">
+                                                    <input type="text" id="promocode" class='form-control' placeholder='Enter your promo code' />
+                                                    
+                                                </div>
+                                            </div>
+        
+                                            <hr class="mb-4">
+        
+                                            <div class="d-flex justify-content-between mb-3">
+                                                <h5 class="text-uppercase">Total price</h5>
+                                                <h5>{{total}}</h5>
+                                            </div>
+                                            
+                                            <form action="{% url 'checkout' total %}">
+                                                {% csrf_token %}
+                                                
+                                                <button type="submit" class="btn btn-dark btn-block">Checkout</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- Summary section end -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+        </section>
+    </div>
+{% endblock content %}

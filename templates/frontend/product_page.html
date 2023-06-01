@@ -1,0 +1,79 @@
+{% extends 'frontend/index.html' %}
+{% load static %}
+{% block header %}
+    Product name
+{% endblock header %}   
+
+{% block content %}
+
+     <!--  -->
+     <hr>
+    <div class="row mt-5">
+        <div class="col-lg-4 col-md-4 col-sm-12 pb-1 d-flex justify-content-center ">
+            <!-- Product image -->
+            <img src="{{data.image.url}}" alt="thumbnail" class="" width="300" height="auto">
+        </div>
+
+        
+        <div class="col-lg-5 col-md-4 col-sm-12 pt-5 pb-1">
+            <p class="text-justified fs-3">{{data.productId.product_name}}</p>
+            <p class="p-0 m-0 pt-1 g-0 custom-font-size ">Description</p>
+            <p class="text-justified mx-5">{{data.productId.description}}</p>
+            <p class="p-0 m-0 pt-1  custom-font-size">Features</p>
+            <p class="text-justified mx-5">{{data.productId.specification}}</p>
+            <p class="p-0 m-0 pt-1  custom-font-size">Price:  
+                <span class="px-4 fs-6">Rs. {{data.productId.price}}</span>
+            </p>
+            <form method="post" class="pt-4">
+                {% csrf_token %}
+                <input type="hidden" id='productId' name="productId" class="productId" value="{{i.productId.id}}">
+                <input type="hidden" id='productImage' name="productImage" class="productId" value="{{i.id}}">
+            
+                <input type='submit' value='Add to Cart' class="btn custom-font-size btn-primary addToCart">
+                <a href="#" class="btn custom-font-size btn-primary">Buy Now</a>
+            </form>
+
+        </div>
+        <div class="col-lg-3 col-md-4 sm-dismiss pt-5 pb-1">
+            <div class="row">
+                <div class="col-5">
+                    <img src="" alt="" srcset="">
+                </div>
+            </div>
+        </div>
+        <!-- horizontal line -->
+        <hr class="mt-5">
+    </div>
+
+    <!-- other ongoing donations only -->
+    <div class="row mt-4">
+        <span class="border-1 rounded ">
+            <a href="{% url 'shop' %}" class="btn broder px-4">See More</a>
+        </span>
+        {%if more%}
+            {% for i in more %}
+        
+            <div class="col-lg-3 col-md-4 col-sm-12 pb-1">
+                <div class="card border rounded-3 my-3" style="width: 15rem; ">
+                        <a href="{% url 'Product' i.productId.slugs i.productId.id %}" class="text-decoration-none text-dark"><img src="{{i.image.url}}" class="card-img-top img-fluid w-100" style="height: 14rem;" alt="..."></a>
+                        <div class="card-body text-center p-0 pt-4 pb-3">
+                            <p class="card-title fs-6"><a href="{% url 'Product' i.productId.slugs i.productId.id %}" class="text-decoration-none text-dark">{{i.productId.product_name}}</a></p>
+                            <p class="card-text">Rs. {{i.productId.price}}</p>
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" id='productId' name="productId" class="productId" value="{{i.productId.id}}">
+                                <input type="hidden" pattern="[0-9]" id='productImage' name="productImage" class="productId" value="{{i.id}}">
+                            
+                                <input type='submit' value='Add to Cart' class="btn btn-sm btn-primary addToCart">
+                                <a href="#" class="btn btn-sm btn-primary">Buy Now</a>
+                            </form>
+                        </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+        
+    </div>
+
+
+{% end

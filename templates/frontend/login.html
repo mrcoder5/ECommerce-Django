@@ -1,0 +1,58 @@
+{%extends 'frontend/index.html'%}
+{%load static%}
+{%block header%}Login{%endblock%}
+{%block content%}
+
+
+            <div class="row mt-5">
+              {% if messages %}
+              {% for msg in messages  %}
+              <div class="toast show msg align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                  <div class="toast-body">
+                    {{msg}}
+                  </div>
+                  <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+              </div>
+              {% endfor %}
+              {% endif %}
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-1"></div>
+                <div class="col-md-4 col-10 border bg-light" style="border-radius: 25px;">
+                  <h4 class="text-center mt-4 mx-3">Login</h4>
+                  <form class="mx-5 mt-2"  method="post">
+                      {%csrf_token%}
+                      <!-- Email input -->
+                        <div class="form-5 mb-2">
+                          <label class="form-label" for="email">Email address or Username</label>
+                          <input type="text" id="email" name="email" class="form-control" required />
+                        </div>
+                      
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                          <label class="form-label" for="password">Password</label>
+                          <input type="password" id="password" name="password" class="form-control" required />
+                        </div>
+                      
+                        <!-- 2 column grid layout for inline styling -->
+                        <div class="row mb-1">
+                        </div>
+                      
+                        <!-- Submit button -->
+                        <input type="submit" value="Login" class="btn btn-primary">
+                      
+                        <!-- Register buttons -->
+                        <div class="text-center">
+                          <p class="text-muted">Not a member? <a href="{% url 'register' %}">Register</a></p>
+                          
+                        </div>
+                    </form>                    
+                </div>
+                <div class="col-md-4 col-1"></div>
+            </div>
+        </div> 
+        
+
+{%endblock%}

@@ -1,0 +1,113 @@
+{%extends 'frontend/index.html'%}
+{%load static%}
+{%block header%}Register{%endblock%}
+{%block content%}
+
+        
+            
+           
+                
+                {% comment %} <div class="row py-3 px-4">
+                    <div class="col-md-6 p-2">
+                        {{form.first_name.label}}<br>
+                        {{form.first_name}}
+                    </div>
+                    <div class="col-md-6 p-2">
+                        {{form.last_name.label}}<br>
+                        {{form.last_name}}
+                    </div>
+                    <div class="col-md-6 p-2 " id="regform">
+                        {{form.username.label}}<br>
+                        {{form.username}}       
+                        <span>{{form.username.help_text}}</span>
+                    </div>
+                    <div class="col-md-6 p-2">
+                        {{form.email.label}}<br>
+                        {{form.email}}
+                    </div>
+                    <div class="col-md-12 p-2" id="regform">
+                        {{form.password1.label}}<br>
+                        {{form.password1}}
+                        <span> {{form.password1.help_text}}</span>
+                    </div>
+                    <div class="col-md-12 p-2" id="regform">
+                        {{form.password2.label}}<br>
+                        {{form.password2}}
+                        <span>{{form.password2.help_text}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-auto mx-4 ">
+                        <button type="submit" class="btn btn-primary align-content-center">Signup</button><br>
+                        <p class="text-muted mt-2">Already have an account? <a href="{% url 'login' %}">Login</a> instead.</p>                
+                    </div>
+                </div> {% endcomment %}
+                
+                    
+                    <div class="row d-flex justify-content-center align-items-center h-100 mt-5">
+                        <div class="col-lg-12 col-xl-11">
+                            <div class="card text-black" style="border-radius: 25px;">
+                            <div class="card-body p-md-5">
+                                <div class="row justify-content-center">
+                                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+
+                                    <form class="mx-1 mx-md-4" method="post">
+                                    {% csrf_token %}
+                                    <div class="d-flex flex-row align-items-start mb-4">
+                                        <p class="py-2"><i class="fas fa-user fa-lg me-3 fa-fw"></i></p>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="text" name="first_name" id="first_name mb-1" class="form-control mb-2" placeholder="First Name" />
+                                            <input type="text" id="last_name" name="last_name" class="form-control mb-2" placeholder="Last Name" />
+                                            <input type="text" name="username" id="usernmae" class="form-control" placeholder="Username" />
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="text" name="email" id="email" class="form-control" placeholder="Email" />                                         
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                        <input type="password" id="password1" name="password1" class="form-control" placeholder="Password" />
+                                        
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                        <input type="password" id="password2" name="password2" class="form-control " placeholder="Repeat your password" />
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <input type="submit" value="Submit" class="btn btn-primary fs-6">
+                                    </div>
+
+                                </form>
+
+                                </div>
+                                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                                    class="img-fluid" alt="Sample image">
+
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                   
+
+          
+        
+        
+{%endblock%}
